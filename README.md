@@ -1,40 +1,148 @@
-# Interstellar
+## 100% AI generated (ChatGPT 6.2 Sol - XHigh effort)
+Prompt:
+```
+PROJECT: INTERSTELLAR — REAL-TIME 3D CINEMATIC EXPERIENCE
+You are an expert graphics programmer, technical artist, and creative director specializing in Three.js, WebGL, GLSL shaders, physically based rendering, and procedural 3D environments.
 
-A real-time Three.js observatory with two independently explorable scenes inspired by the supplied visual references. The project generates every surface, light source, spacecraft part, and background in code.
+Your objective is to recreate the visual atmosphere, scale, and scientific phenomena of Christopher Nolan's Interstellar as an extraordinary, fully interactive, real-time 3D experience running directly in a web browser.
 
-## Run locally
+You will receive two reference images. Study their composition, geometry, lighting, colors, spatial relationships, and visual atmosphere. Use them as artistic references to reconstruct the environments in three dimensions.
+1. THE MOST IMPORTANT REQUIREMENT
+EVERY SCENE MUST EXIST AS A LIVE, REAL-TIME, EXPLORABLE 3D ENVIRONMENT.
 
-1. Extract the archive.
-2. Open a terminal in the `Interstellar` folder and run `npm start` with Node.js 18 or later. The bundled Three.js modules let it run offline without `npm install`.
-3. Open [http://localhost:4173](http://localhost:4173) in a desktop browser with WebGL 2 and hardware acceleration enabled.
+This is non-negotiable.
 
-Python 3 can serve the same folder with `python -m http.server 4173 --bind 127.0.0.1`. Serve the files over HTTP so the browser can load the ES modules.
+Do not use static images, prerecorded videos, panoramic backgrounds, CSS animations, or 2D visual tricks as substitutes for 3D environments.
 
-## Controls
+The user must be able to move the camera, change perspective, observe parallax, and explore the scene from different angles.
 
-| Input | Action |
-| --- | --- |
-| Drag and scroll | Orbit and zoom |
-| Two-finger pinch | Zoom on a touch screen |
-| V | Switch between orbit and free flight |
-| Drag in free flight | Look around |
-| WASD, Q / E | Move in free flight, descend / ascend |
-| Shift, + / − | Boost or adjust flight speed |
-| 1 / 2 | Switch between Gargantua and Tesseract |
-| R | Reset the current camera |
-| Space | Pause or resume the scene's motion |
-| F | Fullscreen |
-| H, Esc | Toggle the interface, or restore it with Esc |
+All celestial objects, spacecraft, environments, lighting effects, and major visual phenomena must be represented through actual 3D geometry, procedural rendering, or camera-dependent GPU shaders.
 
-The settings button gives access to the camera mode, speed, and Auto, High, Medium, and Low rendering quality. Auto adjusts the framebuffer resolution based on observed frame times. Space pauses the simulation while leaving the camera interactive.
+Reference images are visual targets, not backgrounds to display.
+2. TECHNOLOGY
+Use:
+- Three.js for the scene graph, cameras, geometry, and rendering.
+- WebGL2 and custom GLSL shaders for advanced rendering effects.
+- Procedural geometry and shader-generated materials wherever possible.
+- GPU-based postprocessing for bloom, tone mapping, and cinematic effects.
+- Efficient rendering techniques to maintain interactive frame rates.
+Use external libraries only when they meaningfully improve the result.
 
-## Rendering
+Do not rely on prebuilt black-hole animations, stock scene backgrounds, or prerecorded effects.
+3. GARGANTUA — GRAVITATIONAL LENSING
+If the reference images depict Gargantua, prioritize an exceptionally convincing black-hole simulation.
 
-**Gargantua.** A WebGL 2 prepass uses fourth-order Runge–Kutta integration of the Schwarzschild photon orbit equation, with gravitational units where *M* = 1. The shader stores reciprocal radius along each curved path and concentrates samples near the capture boundary. A second shader maps the observer's screen rays to those paths, traces disk crossings in their orbital planes, and looks up sky radiance along the escape direction. Successive winding paths produce the narrow photon-ring feature and higher-order images of the same disk. Disk filaments shear at different orbital speeds. Approximate Doppler and gravitational shifts color the emission, which is graded for the reference. The spacecraft and moon are separate foreground meshes.
+Implement:
+- A dark event-horizon silhouette.
+- A luminous, geometrically thin accretion disk.
+- Gravitational lensing that visibly bends light around the black hole.
+- Distortion of the background starfield.
+- Apparent accretion-disk light above and below the black hole.
+- A photon-ring-like feature near the shadow boundary.
+- Physically motivated brightness and color variations.
+- Camera-dependent distortion that responds continuously as the observer moves.
+The gravitational lensing must not be a decorative glowing ring.
 
-**Tesseract.** Instanced boxes form several overlapping layers of rails, joints, and recessed chambers. Procedural brushed-metal shaders and embedded emissive hardware vary across the structure. A depth-aware shader integrates light in world-space haze up to the nearest surface. The drifting astronaut is built from pressure-suit, helmet, backpack, and limb meshes.
+Implement an actual GPU-based light-deflection approximation or numerical ray integration, balancing physical credibility against real-time performance.
 
-Both scenes render into a linear HDR buffer and use GPU bloom and ACES tone mapping. The gravity model is non-rotating. Disk spectrum, optical depth, and foreground shading are cinematic approximations.
+The accretion disk must have spatial depth, procedural structure, and convincing motion.
+4. CINEMATIC ART DIRECTION
+The visual philosophy is minimalism, scientific wonder, and overwhelming cosmic scale.
 
-The app code and GLSL live in `src/`. Three.js r180 and the required add-ons are bundled under `vendor/` with their MIT license. For background on the trajectory-table approach, see [Eric Bruneton's black hole rendering paper](https://arxiv.org/abs/2010.08735).
-# interstellar
+Avoid excessive UI, distracting particles, unnecessary neon colors, arcade-style effects, or generic science-fiction decorations.
+
+Prioritize:
+- Immense scale.
+- Deep blacks.
+- Restrained, physically motivated lighting.
+- Subtle color gradients.
+- Dramatic silhouettes.
+- Realistic celestial illumination.
+- Atmospheric depth.
+- Elegant camera composition.
+- Carefully controlled bloom and exposure.
+The result should feel like a scientifically inspired cinematic environment, not a videogame menu or an animated wallpaper.
+
+Every visual element should have a purpose.
+5. INTERACTIVE EXPLORATION
+Implement smooth camera controls with:
+- Mouse dragging to orbit.
+- Scroll-wheel zoom.
+- Optional free-flight mode using WASD.
+- Smooth camera damping.
+- Adjustable movement speed.
+- Sensible near/far clipping and scale handling.
+- The ability to pause or resume procedural motion.
+Camera movement must reveal genuine 3D structure and perspective changes.
+
+Provide a small, unobtrusive interface with controls for switching scenes, resetting the camera, and entering fullscreen mode.
+
+The interface should disappear or become unobtrusive when not in use.
+6. MULTIPLE SCENES
+If the references represent different environments, reconstruct each as an independent real-time 3D scene.
+
+Support seamless switching between them.
+
+Each scene must have its own geometry, camera configuration, lighting, procedural effects, and visual identity.
+
+Do not simply place two reference images in a gallery.
+7. VISUAL FIDELITY
+Pay exceptional attention to the reference images.
+
+Reconstruct their:
+- Relative object proportions.
+- Camera perspective.
+- Spatial composition.
+- Lighting direction.
+- Color temperature.
+- Surface appearance.
+- Contrast.
+- Depth and atmospheric effects.
+The initial camera position should closely reproduce the reference composition.
+
+However, the scene must remain coherent when the camera moves away from that initial viewpoint.
+
+When exact reconstruction is impossible from limited references, infer plausible 3D geometry rather than faking the missing information.
+8. PERFORMANCE AND QUALITY
+Target 60 FPS on a modern desktop GPU at 1080p, where practical.
+
+Implement adjustable rendering quality if necessary.
+
+Use GPU-efficient techniques, adaptive resolution, and sensible shader complexity.
+
+Avoid unnecessary draw calls, excessive geometry, and CPU-heavy per-frame calculations.
+
+Prefer mathematically elegant procedural solutions over brute-force rendering.
+
+Visual fidelity is the priority, but the application must remain responsive and genuinely interactive.
+9. DELIVERABLE
+Build a complete, functional browser application.
+
+Provide all necessary source files, shaders, dependencies, and instructions for running it locally.
+
+The result must be executable, not pseudocode or an architectural proposal.
+
+Implement the actual rendering systems. Do not replace difficult effects with placeholders or merely describe how they could be implemented.
+
+Before considering the project complete, verify that:
+1. Every scene renders in real time.
+2. Camera movement changes the actual perspective.
+3. Objects exhibit correct spatial parallax.
+4. Gravitational lensing responds to camera movement.
+5. The application runs without shader compilation errors.
+6. The experience is visually coherent from multiple viewing angles.
+7. The default camera views closely resemble the supplied references.
+FINAL CREATIVE DIRECTION
+Imagine the viewer is observing the universe through a window aboard a spacecraft.
+
+There is no unnecessary spectacle.
+
+Only darkness, light, gravity, motion, and scale.
+
+The experience should communicate the same sense of awe, isolation, and cosmic grandeur that makes Interstellar unforgettable.
+
+Build something that feels impossible to believe is running live inside a browser.
+
+Do not stop at a basic prototype. Deliver the most visually convincing complete implementation achievable within the available environment.
+```
+and 2 reference images.
